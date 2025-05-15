@@ -1,0 +1,136 @@
+.header {
+  background-color: #d32f2f;
+  color: white;
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 20px 0;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.6);
+  user-select: none;
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #b30000;
+  margin-bottom: 2rem;
+}
+
+.movieInfoSection {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.poster {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #b30000;
+}
+
+.movieDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.movieDetails p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.commentsSection {
+  margin-top: 2rem;
+}
+
+.subTitle {
+  font-size: 1.8rem;
+  color: #b30000;
+  margin-bottom: 1rem;
+}
+
+.commentsList {
+  margin-bottom: 2rem;
+}
+
+.comment {
+  background-color: #ffe5e5;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #b30000;
+}
+
+.commentAuthor {
+  color: #800000;
+}
+
+.noComments {
+  color: #666;
+  font-style: italic;
+}
+
+.addCommentTitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #b30000;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.button {
+  background-color: #b30000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #800000;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #b30000;
+}
+
