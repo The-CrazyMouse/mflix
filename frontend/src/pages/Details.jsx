@@ -9,6 +9,8 @@ function Details() {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState('');
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('token');
+
 
   useEffect(() => {
     async function fetchDetails() {
@@ -16,7 +18,7 @@ function Details() {
       try {
         const [movieRes, commentsRes] = await Promise.all([
           fetch(`${API_URL}/api/movies/${movieId}`),
-          fetch(`${API_URL}/api/comments/${movieId}`)
+          fetch(`${API_URL}/api/comments/${movieId}/`)
         ]);
 
         const movieData = await movieRes.json();
@@ -52,20 +54,26 @@ function Details() {
     if (!commentText.trim()) return;
 
     try {
-      const res = await fetch(`${API_URL}/api/movies/${movieId}/comments`, {
+      const res = await fetch(`${API_URL}/api/comments`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: commentText }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          movieId: movieId,
+          content: commentText,
+        }),
       });
 
       if (res.ok) {
         setCommentText('');
-        const resComments = await fetch(`${API_URL}/api/comments/${movieId}`);
+        const resComments = await fetch(`${API_URL}/api/comments/${movieId}/`);
         const dataComments = await resComments.json();
         setComments(dataComments);
       } else {
         const errorData = await res.json();
-        alert(errorData.error || 'Falha ao adicionar comentário');
+        alert(errorData.message || 'Falha ao adicionar comentário');
       }
     } catch {
       alert('Erro na requisição.');
@@ -87,13 +95,17 @@ function Details() {
         <div className={styles.movieInfoSection}>
           <div className={styles.posterWrapper}>
             <img
-              src={movie.poster || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png'}
+              src={
+                movie.poster ||
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png'
+              }
               alt={`Poster de ${movie.title}`}
               className={styles.poster}
               loading="lazy"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png';
+                e.target.src =
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png';
               }}
             />
           </div>
